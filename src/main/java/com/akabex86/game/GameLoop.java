@@ -67,6 +67,7 @@ public class GameLoop {
        Bukkit.getScheduler().cancelTask(gameTimer);
        handleWinnerActions(winner);
        handleLooserActions(looser);
+       //handleSpectatorActions(a.getSpectators???);
    }
    //
    private void handleWinnerActions(Player winner){
@@ -76,14 +77,14 @@ public class GameLoop {
 
    }
    private void handleSpectatorActions(List<Player> spectators){
-
+       //TODO TELL THE SPECTATOR SOMETHING?
    }
 
    //Also shown to Spectators (Feature Comming soon)
    private void handlePlayerEndMessages(Player... players){
 
    }
-   private void teleportPlayersToSpawn(){
+   private void teleportPlayersToSpawn(ArenaTracker a){
 
    }
 }

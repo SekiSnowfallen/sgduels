@@ -1,6 +1,7 @@
 package com.akabex86.main;
 
 import com.akabex86.commands.*;
+import com.akabex86.listeners.Event_HeartBeat;
 import com.akabex86.listeners._EventLoader;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -29,6 +30,7 @@ public class Main extends JavaPlugin {
 
         loadCommands();
         loadListeners();
+
         logger.log(Level.INFO,"SGDUELS aktiviert!");
     }
     @Override
@@ -38,13 +40,10 @@ public class Main extends JavaPlugin {
     }
     private void loadListeners(){
         new _EventLoader(this);
+        Event_HeartBeat.beat();
     }
     private void loadCommands(){
-
-        //HOME COMMANDS
-        Command_World world= new Command_World(this);
-        getCommand("world").setExecutor(world);
-
+        _CommandLoader.loadCommands();
     }
     private void loadConfig(){
         //TODO setup config
