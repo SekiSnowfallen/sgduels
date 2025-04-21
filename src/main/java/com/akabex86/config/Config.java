@@ -1,4 +1,4 @@
-package com.akabex86.utils;
+package com.akabex86.config;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 

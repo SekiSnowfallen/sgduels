@@ -1,6 +1,6 @@
 package com.akabex86.arena;
 
-import com.akabex86.utils.Config;
+import com.akabex86.config.Config;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 

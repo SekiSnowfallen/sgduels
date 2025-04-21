@@ -21,13 +21,11 @@ public class Main extends JavaPlugin {
         main = this;
 
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null){
-            //Bukkit.getPluginManager().registerEvents(this, this);
             //TODO REFERRING TO https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Hook-into-PlaceholderAPI
             getLogger().warning("PlaceholderAPI nicht gefunden! Plugin texte werden eventuell fehlerhaft dargestellt!");
         }
 
         loadConfig();
-
         loadCommands();
         loadListeners();
 

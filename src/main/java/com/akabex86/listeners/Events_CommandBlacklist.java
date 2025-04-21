@@ -5,8 +5,8 @@ import org.bukkit.event.player.PlayerCommandSendEvent;
 
 import java.util.ArrayList;
 
-public class Event_CommandSend {
-    //zur info: JA, das ist due klasse in der die befehlsliste an den spieler gesendet wird (für tab completion.)
+public class Events_CommandBlacklist {
+    //Blocks tab-completion of the commands below
     public static void onCommandSend(PlayerCommandSendEvent e){
         Player p = e.getPlayer();
 
@@ -69,9 +69,6 @@ public class Event_CommandSend {
             e.getCommands().remove("themis");
             //TODO ADD NEW FILTER COMMANDS
         }
-
-        //Main.main.getLogger().info("[Debug] Downloading Command list for "+p.getName());
-
-        //Main.main.getLogger().info("[Debug] Commands: "+String.join(", ", e.getCommands()));
+        //Main.main.getLogger().info("[Debug] Commands: "+String.join(", ", e.getCommands())); //This is kept for debugging purposes
     }
 }
