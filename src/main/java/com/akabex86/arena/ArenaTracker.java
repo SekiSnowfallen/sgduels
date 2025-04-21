@@ -1,4 +1,4 @@
-package com.akabex86.utils;
+package com.akabex86.arena;
 
 import org.bukkit.entity.Player;
 
@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ArenaTracker {
-    //this class tracks all running arenas and temporary player data.
+    //this class tracks all arenas and temporarily cached player data.
     public static List<String> freeArenas = new ArrayList<>();
 
     public static List<Player> inGamePlaying = new ArrayList<>();

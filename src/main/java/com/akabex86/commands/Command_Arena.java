@@ -2,11 +2,8 @@ package com.akabex86.commands;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import com.akabex86.main.Main;
-import com.akabex86.utils.ArenaBuilder;
-import com.akabex86.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

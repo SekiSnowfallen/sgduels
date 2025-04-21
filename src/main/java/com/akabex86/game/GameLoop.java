@@ -1,13 +1,12 @@
 package com.akabex86.game;
 
 import com.akabex86.main.Main;
-import com.akabex86.utils.ArenaBuilder;
-import com.akabex86.utils.ArenaTracker;
+import com.akabex86.arena.ArenaBuilder;
+import com.akabex86.arena.ArenaTracker;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

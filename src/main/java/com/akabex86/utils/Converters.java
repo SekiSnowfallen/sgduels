@@ -3,10 +3,10 @@ package com.akabex86.utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
-public class Utils {
+public class Converters {
     //This method contains a few helper classes.
 
-    //Makes a time (Integer) look better than just 12384613897561385713641 :D
+    //Makes a time (Integer) look better than just 12384613897561385713641
     public static String timeFormat(int i){
         int mm = i/60;
         int ss = i % 60;
@@ -41,5 +41,6 @@ public class Utils {
 
         return x+spc+y+spc+z+spc+j+spc+p+spc+w;
     }
+
 
 }

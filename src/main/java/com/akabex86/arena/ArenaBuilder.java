@@ -1,12 +1,12 @@
-package com.akabex86.utils;
+package com.akabex86.arena;
 
+import com.akabex86.utils.Config;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class ArenaBuilder {
 
