@@ -31,33 +31,40 @@ public class ParticleMagic {
         double dz = (end.getZ()-start.getZ())/distance;
 
         //Spawn particles alonng the line
-        Main.main.getLogger().info("===PARTICLE SPAWNER===");
-        Long time = System.currentTimeMillis();
         for(double i=0;i<=distance;i+=spacing){
             //Calculate the next particle position
             double x = start.getX()+(dx*i);
             double y = start.getY()+(dy*i);
             double z = start.getZ()+(dz*i);
-            //TODO DISABLE VERBOSE LOGGING AFTER TESTING
-            Main.main.getLogger().info("Spawned particle @ X="+x+", Y="+y+", Z="+z);
             Location temp = new Location(start.getWorld(),x,y,z);
             spawnColoredParticle(p,temp,c);
         }
-        //HOW LONG DOES THE TASK TAKE?
-        Main.main.getLogger().info("Took "+(time-System.currentTimeMillis())+"ms.");
-        Main.main.getLogger().info("===PARTICLE SPAWNER===");
     }
     public static void drawLine(Player p, Location start, Location end){
         drawLine(p,start,end,Color.white);
     }
-    public static void highlightBlock(Player p, Block b, Color c){
+    public static void highlightBlock(Player p, Block b, Color c, double scale){
         Location loc = b.getLocation();
-        //TODO DRAW CUBE (FOR TESTING DRAW X, Y and Z axis
-        drawLine(p,loc,new Location(loc.getWorld(),loc.getX()+0.9,loc.getY(),loc.getZ()),Color.red);
-        drawLine(p,loc,new Location(loc.getWorld(),loc.getX(),loc.getY()+0.9,loc.getZ()),Color.green);
-        drawLine(p,loc,new Location(loc.getWorld(),loc.getX(),loc.getY(),loc.getZ()+0.9),Color.blue);
-        //ILLEGAL LINE
-        drawLine(p,loc,new Location(loc.getWorld(),loc.getX()+1.9,loc.getY()+1.9,loc.getZ()+1.9),Color.orange);
-
+        //double scale = 1.0;
+        //BOTTOM SQUARE
+        drawLine(p,loc,new Location(loc.getWorld(),loc.getX()+scale,loc.getY(),loc.getZ()),c);
+        drawLine(p,loc,new Location(loc.getWorld(),loc.getX(),loc.getY(),loc.getZ()+scale),c);
+        drawLine(p,new Location(loc.getWorld(),loc.getX(),loc.getY(),loc.getZ()+scale),new Location(loc.getWorld(),loc.getX()+scale,loc.getY(),loc.getZ()+scale),c);
+        drawLine(p,new Location(loc.getWorld(),loc.getX()+scale,loc.getY(),loc.getZ()+scale),new Location(loc.getWorld(),loc.getX()+scale,loc.getY(),loc.getZ()),c);
+        //PILLARS
+        drawLine(p,loc,new Location(loc.getWorld(),loc.getX(),loc.getY()+scale,loc.getZ()),c);
+        drawLine(p,new Location(loc.getWorld(),loc.getX(),loc.getY(),loc.getZ()+scale),new Location(loc.getWorld(),loc.getX(),loc.getY()+scale,loc.getZ()+scale),c);
+        drawLine(p,new Location(loc.getWorld(),loc.getX()+scale,loc.getY(),loc.getZ()),new Location(loc.getWorld(),loc.getX()+scale,loc.getY()+scale,loc.getZ()),c);
+        drawLine(p,new Location(loc.getWorld(),loc.getX()+scale,loc.getY(),loc.getZ()+scale),new Location(loc.getWorld(),loc.getX()+scale,loc.getY()+scale,loc.getZ()+scale),c);
+        //TOP SQUARE (OFFSET == 0.9 up on y axis
+        drawLine(p,new Location(loc.getWorld(),loc.getX(),loc.getY()+scale,loc.getZ()),new Location(loc.getWorld(),loc.getX()+scale,loc.getY()+scale,loc.getZ()),c);
+        drawLine(p,new Location(loc.getWorld(),loc.getX(),loc.getY()+scale,loc.getZ()),new Location(loc.getWorld(),loc.getX(),loc.getY()+scale,loc.getZ()+scale),c);
+        drawLine(p,new Location(loc.getWorld(),loc.getX(),loc.getY()+scale,loc.getZ()+scale),new Location(loc.getWorld(),loc.getX()+scale,loc.getY()+scale,loc.getZ()+scale),c);
+        drawLine(p,new Location(loc.getWorld(),loc.getX()+scale,loc.getY()+scale,loc.getZ()+scale),new Location(loc.getWorld(),loc.getX()+scale,loc.getY()+scale,loc.getZ()),c);
+    }
+    public static void  highlightBlock(Player p, Block b, Color c){
+        highlightBlock(p,b,c,1.0);
+    }public static void  highlightBlock(Player p, Block b){
+        highlightBlock(p,b,Color.white);
     }
 }
