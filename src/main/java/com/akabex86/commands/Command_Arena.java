@@ -29,12 +29,33 @@ public class Command_Arena implements CommandExecutor {
             Player p = (Player)sender;
 
             if(p.hasPermission("SGDuels.admin")){
-                /*
                 if(args.length == 0){
                     showHelp(p);
-                }else if(args.length == 1){
-                    if(args[0].equalsIgnoreCase("help")){
-                        showHelp(p);
+                    return true;
+                }
+                if(args.length == 1){
+                    if(args[0].equalsIgnoreCase("list")) {
+                        //list all registered Arenas
+                        return true;
+                    }
+
+                    if(args[0].equalsIgnoreCase("info")) {
+                        //show cache/info of current arena
+                        return true;
+                    }
+                    if(args[0].equalsIgnoreCase("clear")) {
+                        //clear cache
+                        return true;
+                    }
+                    if(args[0].equalsIgnoreCase("save")) {
+                        //list Arenas
+                        return true;
+                    }
+                    //show help if args[0] is invalid
+                    showHelp(p);
+                    return true;
+                }
+                /*if(args.length == 1){
                     }else if(args[0].equalsIgnoreCase("list")){
                         List<String> IDs = ArenaBuilder.listArenas();
                         int i = IDs.size();
@@ -212,34 +233,35 @@ public class Command_Arena implements CommandExecutor {
             }
             showHelp(p);
         }else{
-            System.out.println("Fehler: Der Befehl kann nur von einem Spieler genutzt werden!");
+            System.out.println("Error: Only players can use that command!");
         }
         return true;
     }
 
     private void showHelp(Player p){
-        p.sendMessage("�e�lARENA EDITOR �8�l- �6�lHILFE");
-        p.sendMessage("�6/arena help �8- �eZeigt diese Seite!");
-        p.sendMessage("�6/arena list �8- �eAlle Arenen anzeigen!");
+        p.sendMessage("§e§lARENA EDITOR §8§l- §6§lHELP");
+        p.sendMessage("§6/arena help §8- §eShows this page!");
+        p.sendMessage("§6/arena list §8- §eShows a list of all arenas!");
 
-        p.sendMessage("�6/arena status �8- �eStatus im arenacache!");
-        p.sendMessage("�6/arena clear �8- �eArenacache bereinigen");
-        p.sendMessage("�6/arena save �8- �eArena Speichern!");
-        p.sendMessage("�6/arena setspawn �8- �eArena Spawn setzen!");
-        p.sendMessage("�6/arena setp1 �8- �eSpieler1 Spawnpunkt setzen!");
-        p.sendMessage("�6/arena setp2 �8- �eSpieler2 Spawnpunkt setzen!");
-        p.sendMessage("�6/arena setd1 �8- �eDeathmatch1 Spawn setzen!");
-        p.sendMessage("�6/arena setd2 �8- �eDeathmatch2 Spawn setzen!");
-        p.sendMessage("�6/arena addchest �8- �eTruhe hinzuf�gen!");
-        p.sendMessage("�6/arena delchest �8- �eTruhe entfernen!");
+        //p.sendMessage("§6/arena editor §8- §eEnable Editmode");
+        p.sendMessage("§6/arena info §8- §eDisplay currently cached arena");
+        p.sendMessage("§6/arena clear §8- §eArenacache bereinigen");
+        p.sendMessage("§6/arena save §8- §eArena Speichern!");
+        p.sendMessage("§6/arena setspawn §8- §eArena Spawn setzen!");
+        p.sendMessage("§6/arena setp1 §8- §eSpieler1 Spawnpunkt setzen!");
+        p.sendMessage("§6/arena setp2 §8- §eSpieler2 Spawnpunkt setzen!");
+        p.sendMessage("§6/arena setd1 §8- §eDeathmatch1 Spawn setzen!");
+        p.sendMessage("§6/arena setd2 §8- §eDeathmatch2 Spawn setzen!");
+        p.sendMessage("§6/arena addchest §8- §eTruhe hinzufügen!");
+        p.sendMessage("§6/arena delchest §8- §eTruhe entfernen!");
 
-        p.sendMessage("�6/arena load <arenaid> �8- �eArena aus Arenaliste laden!");
-        p.sendMessage("�6/arena setid <id>�8- �eArenaid setzen!");
-        p.sendMessage("�6/arena setname <name>�8- �eArenanamen setzen!");
-        p.sendMessage("�6/arena setauthor <author>�8- �eAuthor setzen!");
+        p.sendMessage("§6/arena load <arenaid> §8- §eArena aus Arenaliste laden!");
+        p.sendMessage("§6/arena setid <id>§8- §eArenaid setzen!");
+        p.sendMessage("§6/arena setname <name>§8- §eArenanamen setzen!");
+        p.sendMessage("§6/arena setauthor <author>§8- §eAuthor setzen!");
 
-        p.sendMessage("�6/arena tp <id>�8- �eTeleportiere in eine Arena!");
-        p.sendMessage("�6/arena leave�8- �eTeleportiere zur�ck zum Spawn!");
+        p.sendMessage("§6/arena tp <id>§8- §eTeleportiere in eine Arena!");
+        p.sendMessage("§6/arena leave§8- §eTeleportiere zurück zum Spawn!");
 
     }
 }

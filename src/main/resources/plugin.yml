@@ -7,6 +7,26 @@ depend: [ProtocolLib]
 softdepend: [PlaceholderAPI,WorldGuard]
 
 commands:
+  sgd:
+    aliases: [duels,sgduels,sg]
+    permission: SGDuels.duels
+    usage: /sgd help
+    description: sgd
+  arena:
+    aliases: [config,edit,cfg]
+    permission: SGDuels.admin
+    usage: /arena help
+    description: arena
+  build:
+    aliases: [bau,bauen,creative]
+    permission: SGDuels.build
+    usage: /build
+    description: build
+  spectate:
+    aliases: [spec,watch]
+    permission: SGDuels.mod
+    usage: /build
+    description: build
   world:
     aliases: [mw,mworld]
     permission: sgduels.world
