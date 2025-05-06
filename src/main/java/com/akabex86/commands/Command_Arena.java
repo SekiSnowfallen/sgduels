@@ -46,7 +46,7 @@ public class Command_Arena implements CommandExecutor {
                     if(IDs.size() != 0){
                         for(String ID:IDs){
                             ArenaBuilder a = ArenaBuilder.loadArena(ID);
-                            p.sendMessage("§7- §eID:§6"+ID+" §8[§7"+a.getMapName()+"§7 von §7"+a.getMapAuthor()+"§8§r");
+                            p.sendMessage("§7- §eID:§6"+ID+" §8[§7"+a.getMapName()+"§7 by §7"+a.getMapAuthor()+"§8]§r");
                         }
                     }
                     return true;
