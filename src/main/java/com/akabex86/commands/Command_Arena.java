@@ -6,6 +6,8 @@ import java.util.List;
 
 import com.akabex86.arena.ArenaBuilder;
 import com.akabex86.main.Main;
+import com.akabex86.utils.Converters;
+import it.unimi.dsi.fastutil.Hash;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,6 +18,7 @@ public class Command_Arena implements CommandExecutor {
     public Command_Arena(Main main) {
 
     }
+    //TEMPORARY SOLUTION (Per-player EDITOR CACHE)
     public static HashMap<String,String> ID = new HashMap<>();
     public static HashMap<String,String> name = new HashMap<>();
     public static HashMap<String,String> author = new HashMap<>();
@@ -25,6 +28,7 @@ public class Command_Arena implements CommandExecutor {
     public static HashMap<String,Location> d1 = new HashMap<>();
     public static HashMap<String,Location> d2 = new HashMap<>();
     public static HashMap<String, ArrayList<String>> chests = new HashMap<>();
+    public static HashMap<String, Boolean> isSaved = new HashMap<>();
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(sender instanceof Player){
@@ -49,8 +53,27 @@ public class Command_Arena implements CommandExecutor {
                         }
                         return true;
                     }
-                    if(args[0].equalsIgnoreCase("info")) {
+                    if(args[0].equalsIgnoreCase("status")) {
                         //show cache/info of current arena
+                        if(isSaved.get(p.getName()) == null){
+                            p.sendMessage("§e§lARENA EDITOR §8§l- §6§lSTATUS §8§l(§c§lNOT SAVED§8§l)");
+                        }else{
+                            String status = "§c§lNOT SAVED";
+                            if(isSaved.get(p.getName())){
+                                status = "§a§lSAVED";
+                            }
+                            p.sendMessage("§e§lARENA EDITOR §8§l- §6§lSTATUS §8§l("+status+"§8§l)");
+                        }
+                        if(ID.get(p.getName()) == null){p.sendMessage("§7ID: §c-");}else{p.sendMessage("§7ID: §a"+ID.get(p.getName()));}
+                        if(name.get(p.getName()) == null){p.sendMessage("§7NAME: §c-");}else{p.sendMessage("§7NAME: §a"+name.get(p.getName()));}
+                        if(author.get(p.getName()) == null){p.sendMessage("§7AUTHOR: §c-");}else{p.sendMessage("§7AUTHOR: §a"+author.get(p.getName()));}
+
+                        if(spawn.get(p.getName()) == null){p.sendMessage("§7SPAWN: §c-");}else{p.sendMessage("§7SPAWN: §a"+ Converters.locationToString(spawn.get(p.getName())));}
+                        if(p1.get(p.getName()) == null){p.sendMessage("§7P1: §c-");}else{p.sendMessage("§7P1: §a"+Converters.locationToString(p1.get(p.getName())));}
+                        if(p2.get(p.getName()) == null){p.sendMessage("§7P2: §c-");}else{p.sendMessage("§7P2: §a"+Converters.locationToString(p2.get(p.getName())));}
+                        if(d1.get(p.getName()) == null){p.sendMessage("§7D1: §c-");}else{p.sendMessage("§7D1: §a"+Converters.locationToString(d1.get(p.getName())));}
+                        if(d2.get(p.getName()) == null){p.sendMessage("§7D2: §c-");}else{p.sendMessage("§7D2: §a"+Converters.locationToString(d2.get(p.getName())));}
+                        if(chests.containsKey(p.getName()))p.sendMessage("§7Chests: §r"+chests.get(p.getName()).size());
                         return true;
                     }
                     if(args[0].equalsIgnoreCase("clear")) {
@@ -66,17 +89,7 @@ public class Command_Arena implements CommandExecutor {
                     return true;
                 }
                 /*if(args.length == 1){
-                    }else if(args[0].equalsIgnoreCase("list")){
-                        List<String> IDs = ArenaBuilder.listArenas();
-                        int i = IDs.size();
-                        p.sendMessage("§6Derzeit sind (§e"+i+"§6) Arenas geladen!");
-                        if(IDs.size() != 0){
-                            for(String ID:IDs){
-                                ArenaBuilder a = ArenaBuilder.loadArena(ID);
-                                //p.sendMessage("§7- §eID:§6"+ID+" §8[§7"+a.getName()+"§7 von §7"+a.getAuthor()+"§8§r");
-                            }
-                        }
-                    }else if(args[0].equalsIgnoreCase("status")){
+                    }if(args[0].equalsIgnoreCase("status")){
                         if(ID.get(p.getName()) == null){p.sendMessage("�7ID: �c-");}else{p.sendMessage("�7ID: �a"+ID.get(p.getName()));}
                         if(name.get(p.getName()) == null){p.sendMessage("�7NAME: �c-");}else{p.sendMessage("�7NAME: �a"+name.get(p.getName()));}
                         if(author.get(p.getName()) == null){p.sendMessage("�7AUTHOR: �c-");}else{p.sendMessage("�7AUTHOR: �a"+author.get(p.getName()));}
@@ -254,7 +267,7 @@ public class Command_Arena implements CommandExecutor {
         p.sendMessage("§6/arena list §8- §eShows a list of all arenas");
 
         //p.sendMessage("§6/arena editor §8- §eEnable Editmode");
-        p.sendMessage("§6/arena info §8- §eDisplay currently cached arena");
+        p.sendMessage("§6/arena status §8- §eDisplay currently cached arena");
         p.sendMessage("§6/arena clear §8- §ePurge cached arena data");
         p.sendMessage("§6/arena save §8- §eSave cached arena data");
         p.sendMessage("§6/arena setspawn §8- §eSet arena spawn");
