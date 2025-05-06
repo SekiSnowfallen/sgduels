@@ -1,6 +1,9 @@
 package com.akabex86.listeners;
 
+import com.akabex86.commands.Command_Arena;
+import com.akabex86.commands.Command_Sgduels;
 import com.akabex86.main.Main;
+import com.akabex86.utils.Converters;
 import com.akabex86.utils.ParticleMagic;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -15,8 +18,10 @@ public class Event_HeartBeat {
             @Override
             public void run() {
                 for(Player p:Bukkit.getOnlinePlayers()){
-                    //testing
-                    ParticleMagic.highlightBlock(p,p.getLocation().getBlock(), Color.ORANGE);
+                    if(Command_Arena.chests.containsKey(p.getName()))
+                        for(String crate_loc:Command_Arena.chests.get(p.getName())){
+                            ParticleMagic.highlightBlock(p, Converters.stringToLocation(crate_loc).getBlock(), Color.GREEN);
+                        }
                 }
             }
         },20,20);
