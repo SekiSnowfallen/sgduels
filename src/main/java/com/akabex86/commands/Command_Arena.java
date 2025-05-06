@@ -65,6 +65,7 @@ public class Command_Arena implements CommandExecutor {
                     if(chests.containsKey(p.getName()))p.sendMessage("§7Chests: §r"+chests.get(p.getName()).size());
                     return true;
                 }
+
                 if(args[0].equalsIgnoreCase("save")) {
                     if(ID.get(p.getName()) == null||name.get(p.getName()) == null||
                             author.get(p.getName()) == null||spawn.get(p.getName()) == null||
@@ -161,83 +162,112 @@ public class Command_Arena implements CommandExecutor {
                     p.sendMessage("§6cleared arena from cache. \n§6You can load a new one with /arena load <ID> or create a new one by adding the values manually.");
                     return true;
                 }
-                if(args[0].equalsIgnoreCase("set")) {
 
+                if(args[0].equalsIgnoreCase("setid")) {
+                    if(args.length == 1){
+                        p.sendMessage("§6/arena setid <§cid§6>");
+                        return true;
+                    }
+                    //TODO MAKE ID UNIQUE. WARN ON OVERRIDE.
+                    ID.put(p.getName(), args[1].toLowerCase());
+                    p.sendMessage("§6Arena §eID §6set!");
                     return true;
                 }
-                //show help if args[0] is invalid
+                if(args[0].equalsIgnoreCase("setname")) {
+                    if(args.length == 1){
+                        p.sendMessage("§6/arena setname <§cname§6>");
+                        return true;
+                    }
+                    name.put(p.getName(), args[1]);
+                    p.sendMessage("§6Arena §ename §6set!");
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("setauthor")) {
+                    if(args.length == 1){
+                        p.sendMessage("§6/arena setauthor <§cauthor§6>");
+                        return true;
+                    }
+                    author.put(p.getName(), args[1]);
+                    p.sendMessage("§6Arena §eauthor §6set!");
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("setspawn")) {
+                    spawn.put(p.getName(), p.getLocation());
+                    p.sendMessage("§6Arena §espawn §6set!");
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("setp1")) {
+                    p1.put(p.getName(), p.getLocation());
+                    p.sendMessage("§6Arena §eplayer 1 spawn §6set!");
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("setp2")) {
+                    p2.put(p.getName(), p.getLocation());
+                    p.sendMessage("§6Arena §eplayer 2 spawn §6set!");
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("setd1")) {
+                    d1.put(p.getName(), p.getLocation());
+                    p.sendMessage("§6Arena §eplayer 1 deathmatch spawn §6set!");
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("setd2")) {
+                    d2.put(p.getName(), p.getLocation());
+                    p.sendMessage("§6Arena §eplayer 2 deathmatch spawn §6set!");
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("addcrate")) {
+                    if(chests.containsKey(p.getName())){
+                        if(chests.get(p.getName()).contains(Converters.locationToString(p.getLocation().getBlock().getLocation()))){
+                            p.sendMessage("§6That's dumb. just stop it.");//there's already a crate at this location.
+                            return true;
+                        }
+                        chests.get(p.getName()).add(Converters.locationToString(p.getLocation().getBlock().getLocation()));
+                        return true;
+                    }else{
+                        ArrayList<String> cst = new ArrayList<>();
+                        chests.put(p.getName(), cst);
+                        chests.get(p.getName()).add(Converters.locationToString(p.getLocation().getBlock().getLocation()));
+                    }
+                    p.sendMessage("§6Crate added!");
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("delcrate")) {
+                    if(chests.containsKey(p.getName())){
+                        if(chests.get(p.getName()).contains(Converters.locationToString(p.getLocation().getBlock().getLocation()))){
+                            chests.get(p.getName()).remove(Converters.locationToString(p.getLocation().getBlock().getLocation()));
+                            p.sendMessage("§6Crate deleted!");
+                        }else{
+                            p.sendMessage("§6Crate not found.");
+                        }
+                    }else{
+                        p.sendMessage("§6Crate not found.");
+                    }
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("tp")) {
+                    if(args.length == 1){
+                        p.sendMessage("§6/arena tp <§cid§6>");
+                        return true;
+                    }
+                    ArrayList<String> IDs = ArenaBuilder.listArenas();
+                    String called_ID = args[1];
+                    if ((IDs.contains(called_ID)) && (called_ID != null)){
+                        ArenaBuilder a = ArenaBuilder.loadArena(called_ID);
+                        p.teleport(a.getSpawn());
+                        p.sendMessage("§6Teleporting to §e" + called_ID + " §6...");
+                    }else{
+                        p.sendMessage("§6Unknown ID: §c" + called_ID + "§6!");
+                    }
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("leave")) {
+                    //TODO ADD LOBBY SPAWN
+                    p.sendMessage("§6Leaving...");
+                    return true;
+                }
                 showHelp(p);
                 return true;
-
-                /*if(args.length == 1){
-                if(args[0].equalsIgnoreCase("setspawn")){
-                        spawn.put(p.getName(), p.getLocation());
-                        p.sendMessage("�6Arena �eSpawn �6gesetzt!");
-                    }else if(args[0].equalsIgnoreCase("setp1")){
-                        p1.put(p.getName(), p.getLocation());
-                        p.sendMessage("�6Arena �eP1 �6gesetzt!");
-                    }else if(args[0].equalsIgnoreCase("setp2")){
-                        p2.put(p.getName(), p.getLocation());
-                        p.sendMessage("�6Arena �eP2 �6gesetzt!");
-                    }else if(args[0].equalsIgnoreCase("setd1")){
-                        d1.put(p.getName(), p.getLocation());
-                        p.sendMessage("�6Arena �eD1 �6gesetzt!");
-                    }else if(args[0].equalsIgnoreCase("setd2")){
-                        d2.put(p.getName(), p.getLocation());
-                        p.sendMessage("�6Arena �eD2 �6gesetzt!");
-                    }else if(args[0].equalsIgnoreCase("addchest")){
-                        if(chests.containsKey(p.getName())){
-                            chests.get(p.getName()).add(Utils.LocationToString(p.getLocation().getBlock().getLocation()));
-                        }else{
-                            ArrayList<String> cst = new ArrayList<>();
-                            chests.put(p.getName(), cst);
-                            chests.get(p.getName()).add(Utils.LocationToString(p.getLocation().getBlock().getLocation()));
-                        }
-                        p.sendMessage("�6Truhe hinzugef�gt!");
-                    }else if(args[0].equalsIgnoreCase("delchest")){
-                        if(chests.containsKey(p.getName())){
-                            if(chests.get(p.getName()).contains(Utils.LocationToString(p.getLocation().getBlock().getLocation()))){
-                                chests.get(p.getName()).remove(Utils.LocationToString(p.getLocation().getBlock().getLocation()));
-                                p.sendMessage("�6Truhe entfernt!");
-                            }else{
-                                p.sendMessage("�6Keine Truhe gefunden!");
-                            }
-                        }else{
-                            p.sendMessage("�6Keine Truhe gefunden!");
-                        }
-                    }else if(args[0].equalsIgnoreCase("leave")){
-                        Spawn.Teleport(p);
-                        p.sendMessage("�6Verlasse Arena!...");
-                    }else{
-                        showHelp(p);
-                    }
-                }else if(args.length == 2){
-                    }else if(args[0].equalsIgnoreCase("setid")){
-                        ID.put(p.getName(), args[1]);
-                        p.sendMessage("�6Arena �eID �6gesetzt! �8[�7"+args[1]+"�8]");
-                    }else if(args[0].equalsIgnoreCase("setname")){
-                        name.put(p.getName(), args[1]);
-                        p.sendMessage("�6Arena �eNAME �6gesetzt! �8[�7"+args[1]+"�8]");
-                    }else if(args[0].equalsIgnoreCase("setauthor")){
-                        author.put(p.getName(), args[1]);
-                        p.sendMessage("�6Arena �eAUTHOR �6gesetzt! �8[�7"+args[1]+"�8]");
-                    }else if(args[0].equalsIgnoreCase("tp")||args[0].equalsIgnoreCase("teleport")||args[0].equalsIgnoreCase("warp")){
-                        ArrayList<String> IDs = Arena.ArenaList();
-                        String called_ID = args[1];
-                        if ((IDs.contains(called_ID)) && (called_ID != null)){
-                            Arena a = Arena.loadArena(called_ID);
-                            p.teleport(a.getSpawnLoc());
-                            p.sendMessage("�6Teleportiere zur Arena... �8[�e" + called_ID + "�8]");
-                        }else{
-                            p.sendMessage("�6Unbekannte Arena ID �8[�e" + called_ID + "�8]");
-                        }
-                    }else{
-                        showHelp(p);
-                    }
-                }else{
-                    showHelp(p);
-                }
-            */
             }
             showHelp(p);
         }else{
@@ -264,8 +294,8 @@ public class Command_Arena implements CommandExecutor {
         p.sendMessage("§6/arena setp2 §8- §eSet spawn for player 2");
         p.sendMessage("§6/arena setd1 §8- §eSet deathmatch spawn for player 1");
         p.sendMessage("§6/arena setd2 §8- §eSet deathmatch spawn for player 2");
-        p.sendMessage("§6/arena addchest §8- §eAdd chest where you're standing on");
-        p.sendMessage("§6/arena delchest §8- §eDelete chest where you're standing on");
+        p.sendMessage("§6/arena addcrate §8- §eAdd chest where you're standing on");
+        p.sendMessage("§6/arena delcrate §8- §eDelete chest where you're standing on");
         p.sendMessage("\n");
         p.sendMessage("§6/arena tp <id>§8- §eTeleport to the arena spawn");
         p.sendMessage("§6/arena leave§8- §eTeleport back to sgduels lobby");
