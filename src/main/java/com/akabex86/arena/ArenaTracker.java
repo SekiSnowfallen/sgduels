@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ArenaTracker {
     //this class tracks all arenas and temporarily cached player data.
-    public static List<String> freeArenas = new ArrayList<>();
+    public static List<String> freeArenas = new ArrayList<>();//new version of ArenaList
 
     public static List<Player> inGamePlaying = new ArrayList<>();
     public static List<Player> inGameDeathmatch = new ArrayList<>();

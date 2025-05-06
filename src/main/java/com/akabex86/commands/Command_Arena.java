@@ -2,7 +2,9 @@ package com.akabex86.commands;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import com.akabex86.arena.ArenaBuilder;
 import com.akabex86.main.Main;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -36,9 +38,17 @@ public class Command_Arena implements CommandExecutor {
                 if(args.length == 1){
                     if(args[0].equalsIgnoreCase("list")) {
                         //list all registered Arenas
+                        List<String> IDs = ArenaBuilder.listArenas();
+                        int i = IDs.size();
+                        p.sendMessage("§6There are currently (§e"+i+"§6) arenas loaded!");
+                        if(IDs.size() != 0){
+                            for(String ID:IDs){
+                                ArenaBuilder a = ArenaBuilder.loadArena(ID);
+                                p.sendMessage("§7- §eID:§6"+ID+" §8[§7"+a.getMapName()+"§7 von §7"+a.getMapAuthor()+"§8§r");
+                            }
+                        }
                         return true;
                     }
-
                     if(args[0].equalsIgnoreCase("info")) {
                         //show cache/info of current arena
                         return true;
@@ -240,28 +250,28 @@ public class Command_Arena implements CommandExecutor {
 
     private void showHelp(Player p){
         p.sendMessage("§e§lARENA EDITOR §8§l- §6§lHELP");
-        p.sendMessage("§6/arena help §8- §eShows this page!");
-        p.sendMessage("§6/arena list §8- §eShows a list of all arenas!");
+        p.sendMessage("§6/arena help §8- §eShows this page");
+        p.sendMessage("§6/arena list §8- §eShows a list of all arenas");
 
         //p.sendMessage("§6/arena editor §8- §eEnable Editmode");
         p.sendMessage("§6/arena info §8- §eDisplay currently cached arena");
-        p.sendMessage("§6/arena clear §8- §eArenacache bereinigen");
-        p.sendMessage("§6/arena save §8- §eArena Speichern!");
-        p.sendMessage("§6/arena setspawn §8- §eArena Spawn setzen!");
-        p.sendMessage("§6/arena setp1 §8- §eSpieler1 Spawnpunkt setzen!");
-        p.sendMessage("§6/arena setp2 §8- §eSpieler2 Spawnpunkt setzen!");
-        p.sendMessage("§6/arena setd1 §8- §eDeathmatch1 Spawn setzen!");
-        p.sendMessage("§6/arena setd2 §8- §eDeathmatch2 Spawn setzen!");
-        p.sendMessage("§6/arena addchest §8- §eTruhe hinzufügen!");
-        p.sendMessage("§6/arena delchest §8- §eTruhe entfernen!");
+        p.sendMessage("§6/arena clear §8- §ePurge cached arena data");
+        p.sendMessage("§6/arena save §8- §eSave cached arena data");
+        p.sendMessage("§6/arena setspawn §8- §eSet arena spawn");
+        p.sendMessage("§6/arena setp1 §8- §eSet spawn for player 1");
+        p.sendMessage("§6/arena setp2 §8- §eSet spawn for player 2");
+        p.sendMessage("§6/arena setd1 §8- §eSet deathmatch spawn for player 1");
+        p.sendMessage("§6/arena setd2 §8- §eSet deathmatch spawn for player 2");
+        p.sendMessage("§6/arena addchest §8- §eAdd chest where you're standing on");
+        p.sendMessage("§6/arena delchest §8- §eDelete chest where you're standing on");
 
-        p.sendMessage("§6/arena load <arenaid> §8- §eArena aus Arenaliste laden!");
-        p.sendMessage("§6/arena setid <id>§8- §eArenaid setzen!");
-        p.sendMessage("§6/arena setname <name>§8- §eArenanamen setzen!");
-        p.sendMessage("§6/arena setauthor <author>§8- §eAuthor setzen!");
+        p.sendMessage("§6/arena load <arenaid> §8- §eLoad arena from list");
+        p.sendMessage("§6/arena setid <id>§8- §eSet arena ID");
+        p.sendMessage("§6/arena setname <name>§8- §eSet the name of the map");
+        p.sendMessage("§6/arena setauthor <author>§8- §eSet the map author");
 
-        p.sendMessage("§6/arena tp <id>§8- §eTeleportiere in eine Arena!");
-        p.sendMessage("§6/arena leave§8- §eTeleportiere zurück zum Spawn!");
+        p.sendMessage("§6/arena tp <id>§8- §eTeleport to the arena spawn");
+        p.sendMessage("§6/arena leave§8- §eTeleport back to sgduels lobby");
 
     }
 }

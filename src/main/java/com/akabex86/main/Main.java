@@ -1,11 +1,15 @@
 package com.akabex86.main;
 
+import com.akabex86.arena.ArenaBuilder;
+import com.akabex86.arena.ArenaTracker;
 import com.akabex86.commands.*;
+import com.akabex86.config.Config;
 import com.akabex86.listeners.Event_HeartBeat;
 import com.akabex86.listeners._EventLoader;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,19 +26,28 @@ public class Main extends JavaPlugin {
 
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null){
             //TODO REFERRING TO https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Hook-into-PlaceholderAPI
-            getLogger().warning("PlaceholderAPI nicht gefunden! Plugin texte werden eventuell fehlerhaft dargestellt!");
+            getLogger().warning("PlaceholderAPI not found! Plugin messaging might be inconsistent");
         }
 
         loadConfig();
         loadCommands();
         loadListeners();
 
-        logger.log(Level.INFO,"SGDUELS aktiviert!");
+        logger.log(Level.INFO,"=========[SGDUELS]=========");
+        ArrayList<String> IDs = ArenaBuilder.listArenas();
+        int i = IDs.size();
+        for(String s:IDs){
+            ArenaTracker.freeArenas.add(s);
+            logger.log(Level.INFO,"Loading arena into cache: "+s);
+        }
+        logger.log(Level.INFO,"Finished loading arenas!");
+        logger.log(Level.INFO,"=========[SGDUELS]=========");
+        logger.log(Level.INFO,"SGDUELS is ready!");
     }
     @Override
     public void onDisable() {
         super.onDisable();
-        logger.log(Level.INFO,"SGDUELS deaktiviert!");
+        logger.log(Level.INFO,"SGDUELS deactivated!");
     }
     private void loadListeners(){
         new _EventLoader(this);
@@ -45,6 +58,7 @@ public class Main extends JavaPlugin {
     }
     private void loadConfig(){
         //TODO setup config
+
         //Config.createMainFolder();
         //Config.createFolder("kits");
         //Config.createFolder("userdata");

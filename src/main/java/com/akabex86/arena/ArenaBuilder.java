@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -108,7 +109,8 @@ public class ArenaBuilder {
     public static ArenaBuilder getArenaFromPlayer(Player p){
         return ArenaTracker.allocatedArenas.get(p);
     }
-    public static List<String> listArenas(){
-        return Config.list("maps"+File.separator);
+    public static ArrayList<String> listArenas(){
+        //return Config.list("maps"+File.separator);
+        return new ArrayList<>(Config.list("maps" + File.separator));
     }
 }
