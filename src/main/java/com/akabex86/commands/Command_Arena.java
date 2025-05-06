@@ -62,7 +62,7 @@ public class Command_Arena implements CommandExecutor {
                     if(p2.get(p.getName()) == null){p.sendMessage("§7P2: §c-");}else{p.sendMessage("§7P2: §a"+Converters.locationToString(p2.get(p.getName())));}
                     if(d1.get(p.getName()) == null){p.sendMessage("§7D1: §c-");}else{p.sendMessage("§7D1: §a"+Converters.locationToString(d1.get(p.getName())));}
                     if(d2.get(p.getName()) == null){p.sendMessage("§7D2: §c-");}else{p.sendMessage("§7D2: §a"+Converters.locationToString(d2.get(p.getName())));}
-                    if(chests.containsKey(p.getName()))p.sendMessage("§7Chests: §r"+chests.get(p.getName()).size());
+                    if(chests.containsKey(p.getName()))p.sendMessage("§7Crates: §r"+chests.get(p.getName()).size());
                     return true;
                 }
 

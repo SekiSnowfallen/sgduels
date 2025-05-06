@@ -43,7 +43,7 @@ public class Config {
         File[] files = folder.listFiles();
 
         if(files == null || files.length == 0){
-            System.err.println("No file found in the folder '"+folder+"'.");
+            System.err.println("No file found in the directory '"+folder+"'.");
             return Collections.emptyList();
         }
 
@@ -51,7 +51,7 @@ public class Config {
                 .filter(file -> file.isFile() && file.getName().endsWith(".yml"))
                 .map(file -> {
                     String fileNameWithoutExtension = file.getName().replace(".yml","");
-                    System.err.println("Found file with the name '"+fileNameWithoutExtension+".yml' @'"+folder+"' ");
+                    //System.err.println("Found file with the name '"+fileNameWithoutExtension+".yml' @'"+folder+"' ");
                     return fileNameWithoutExtension;
                 })
                 .collect(Collectors.toList());
