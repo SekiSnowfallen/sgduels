@@ -212,43 +212,6 @@ public class Command_Arena implements CommandExecutor {
                         showHelp(p);
                     }
                 }else if(args.length == 2){
-                    if(args[0].equalsIgnoreCase("load")){
-                        ArrayList<String> IDs = Arena.ArenaList();
-                        String called_ID = args[1];
-                        if ((IDs.contains(called_ID)) && (called_ID != null)){
-                            Arena a = Arena.loadArena(called_ID);
-                            ID.put(p.getName(), a.getID());
-                            name.put(p.getName(), a.getName());
-                            author.put(p.getName(), a.getAuthor());
-                            spawn.put(p.getName(), a.getSpawnLoc());
-                            p1.put(p.getName(), a.getP1Loc());
-                            p2.put(p.getName(), a.getP2Loc());
-                            d1.put(p.getName(), a.getDM1Loc());
-                            d2.put(p.getName(), a.getDM2Loc());
-                            if (a.getChests() != null){
-                                if(chests.containsKey(p.getName())){
-                                    chests.get(p.getName()).clear();
-                                    chests.get(p.getName()).addAll(a.getChests());
-                                }else{
-                                    ArrayList<String> cst = new ArrayList<>();
-                                    chests.put(p.getName(), cst);
-                                    chests.get(p.getName()).clear();
-                                    chests.get(p.getName()).addAll(a.getChests());
-                                }
-                            }else{
-                                if(chests.containsKey(p.getName())){
-                                    chests.get(p.getName()).clear();
-                                }else{
-                                    ArrayList<String> cst = new ArrayList<>();
-                                    chests.put(p.getName(), cst);
-                                    chests.get(p.getName()).clear();
-                                }
-                                chests.clear();
-                            }
-                            p.sendMessage("�6Arena geladen! �8[�7" + called_ID + "�8]");
-                        }else{
-                            p.sendMessage("�6Unbekannte Arena ID! �8[�7" + called_ID + "�8]");
-                        }
                     }else if(args[0].equalsIgnoreCase("setid")){
                         ID.put(p.getName(), args[1]);
                         p.sendMessage("�6Arena �eID �6gesetzt! �8[�7"+args[1]+"�8]");
