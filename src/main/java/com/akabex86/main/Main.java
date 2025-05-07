@@ -3,7 +3,6 @@ package com.akabex86.main;
 import com.akabex86.arena.ArenaBuilder;
 import com.akabex86.arena.ArenaTracker;
 import com.akabex86.commands.*;
-import com.akabex86.config.Config;
 import com.akabex86.listeners.Event_HeartBeat;
 import com.akabex86.listeners._EventLoader;
 import org.bukkit.Bukkit;

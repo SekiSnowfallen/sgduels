@@ -7,7 +7,6 @@ import java.util.List;
 import com.akabex86.arena.ArenaBuilder;
 import com.akabex86.main.Main;
 import com.akabex86.utils.Converters;
-import it.unimi.dsi.fastutil.Hash;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -30,9 +29,7 @@ public class Command_Arena implements CommandExecutor {
     public static HashMap<String, ArrayList<String>> chests = new HashMap<>();
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(sender instanceof Player){
-            Player p = (Player)sender;
-
+        if(sender instanceof Player p){
             if(p.hasPermission("SGDuels.admin")){
                 if(args.length == 0){
                     showHelp(p);
@@ -223,7 +220,6 @@ public class Command_Arena implements CommandExecutor {
                             return true;
                         }
                         chests.get(p.getName()).add(Converters.locationToString(p.getLocation().getBlock().getLocation()));
-                        return true;
                     }else{
                         ArrayList<String> cst = new ArrayList<>();
                         chests.put(p.getName(), cst);
@@ -270,8 +266,6 @@ public class Command_Arena implements CommandExecutor {
                 return true;
             }
             showHelp(p);
-        }else{
-            System.out.println("Error: Only players can use that command!");
         }
         return true;
     }
