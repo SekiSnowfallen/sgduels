@@ -13,9 +13,8 @@ import java.util.List;
 public class InventoryLoader {
     public enum InventoryType{
         LOBBY,
-        ARENA,
+        CLEAR,
         CREATIVE,
-        SPECTATOR,
     }
     public static void loadInventory(Player p, InventoryType type){
         PlayerInventory inv = p.getInventory();
@@ -62,7 +61,7 @@ public class InventoryLoader {
                 inv.setItem(4,duelSword);
                 inv.setItem(8,leaveItem);
 
-            case ARENA:
+            case CLEAR:
                 //Do nothing. The player doesn't need items.
             case CREATIVE:
                 //Do nothing. Add Buildmode specific items here.
