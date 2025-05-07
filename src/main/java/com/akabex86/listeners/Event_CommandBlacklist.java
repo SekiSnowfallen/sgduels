@@ -5,7 +5,7 @@ import org.bukkit.event.player.PlayerCommandSendEvent;
 
 import java.util.ArrayList;
 
-public class Events_CommandBlacklist {
+public class Event_CommandBlacklist {
     //Blocks tab-completion of the commands below
     public static void onCommandSend(PlayerCommandSendEvent e){
         Player p = e.getPlayer();

@@ -12,6 +12,9 @@ public class _EventLoader implements Listener {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
     @EventHandler public void onCommandSend(PlayerCommandSendEvent e){
-        Events_CommandBlacklist.onCommandSend(e);
+        Event_CommandBlacklist.onCommandSend(e);
+    }
+    @EventHandler public void onGamemodeChange(PlayerGameModeChangeEvent e){
+        Event_GamemodeChange.onGamemodeChange(e);
     }
 }
