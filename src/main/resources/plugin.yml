@@ -17,11 +17,6 @@ commands:
     permission: SGDuels.admin
     usage: /arena help
     description: Arena Editor.
-  build:
-    aliases: [bau,bauen,creative]
-    permission: SGDuels.build
-    usage: /build
-    description: Build Command.
   spectate:
     aliases: [spec,watch]
     permission: SGDuels.mod
