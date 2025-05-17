@@ -16,14 +16,14 @@ public class Event_BlockPlace {
         }
 
         ItemStack itemInHand = e.getItemInHand();
-
         if(itemInHand.getType() == Material.TNT){
             int amount = itemInHand.getAmount();
             if(amount <= 1){
-                p.getInventory().setItemInMainHand(null);
+                p.getInventory().setItem(e.getHand(),null);
+
             }else{
                 itemInHand.setAmount(amount-1);
-                p.getInventory().setItemInMainHand(itemInHand);
+                p.getInventory().setItem(e.getHand(),itemInHand);
             }
             Location tntSpawnLocation =  e.getBlock().getLocation().add(0.5,0.2,0.5);
             p.getWorld().spawnEntity(tntSpawnLocation, EntityType.PRIMED_TNT);
