@@ -5,6 +5,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.*;
 
@@ -28,5 +30,11 @@ public class _EventLoader implements Listener {
     }
     @EventHandler public void onEntityExplode(EntityExplodeEvent e){
         Event_EntityExplode.onExplode(e);
+    }
+    @EventHandler public void onEntityDamage(EntityDamageEvent e){
+        Event_EntityDamage.onDamage(e);
+    }
+    @EventHandler public void onEntityDamageByEntity(EntityDamageByEntityEvent e){
+        Event_EntityDamageByEntity.onDamage(e);
     }
 }
