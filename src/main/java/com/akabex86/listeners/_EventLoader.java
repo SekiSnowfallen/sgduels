@@ -37,4 +37,7 @@ public class _EventLoader implements Listener {
     @EventHandler public void onEntityDamageByEntity(EntityDamageByEntityEvent e){
         Event_EntityDamageByEntity.onDamage(e);
     }
+    @EventHandler public void onJoin(PlayerJoinEvent e){
+        Event_Join.onJoin(e);
+    }
 }
