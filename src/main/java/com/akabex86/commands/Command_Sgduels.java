@@ -1,6 +1,10 @@
 package com.akabex86.commands;
 
+import com.akabex86.arena.ArenaBuilder;
+import com.akabex86.arena.ArenaTracker;
 import com.akabex86.main.Main;
+import com.akabex86.player.Request;
+import com.akabex86.utils.PlayerUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -14,8 +18,40 @@ public class Command_Sgduels implements CommandExecutor {
     }
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(sender instanceof Player){
-            Player p = (Player)sender;
+        if(!(sender instanceof Player)) {
+            return true;
+        }
+        Player p = (Player)sender;
+        if(args.length == 0){
+            showHelp(p);
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("debug")){
+            if(!p.hasPermission("SGDuels.admin")){
+                showHelp(p);
+                return true;
+            }
+            p.sendMessage("§aShowing debug information...");
+            //TODO SHOW MORE DEBUG INFO
+            p.sendMessage("§6Currently challenged by:");
+            if(Request.getAsked(p).size() != 0){
+                for(String s:Request.getAsked(p)){
+                    p.sendMessage("§8- §e"+s);
+                }
+            }else{
+                p.sendMessage("§cnone.");
+            }
+            p.sendMessage("§6Registered Arenas:");
+            for(String ID: ArenaBuilder.listArenas()){
+                if(ArenaTracker.freeArenas.contains(ID)){
+                    p.sendMessage("§8- §7"+ID+" §aWaiting for players...");
+                }else{
+                    p.sendMessage("§8- §7"+ID+" §cIngame");
+                }
+            }
+            return true;
+        }
+
             /*
             if(args.length == 0){
                 //Utils.showHelp(p);
@@ -96,9 +132,16 @@ public class Command_Sgduels implements CommandExecutor {
                 Utils.showHelp(p);
             }
                  */
-        }else{
-            System.out.println("Fehler: Der Befehl kann nur von einem Spieler genutzt werden!");
-        }
         return true;
+    }
+    private void showHelp(Player p){
+        p.sendMessage("§e§lSGDUels §8§l- §6§lHELP");
+        p.sendMessage("§eHit Players with your §e§lDuel Blade§r§e in order to challenge");
+        p.sendMessage("§ethem to a Duel or to §aaccept§e challenges.");
+        p.sendMessage("§e §r");
+        p.sendMessage("§eRight click to cancel a pending challenge.");
+        p.sendMessage("§e §r");
+        //TODO ADD CONTENT THROUGH PERMISIONS
+        PlayerUtils.playSound(p,Sound.BLOCK_NOTE_BLOCK_PLING);
     }
 }

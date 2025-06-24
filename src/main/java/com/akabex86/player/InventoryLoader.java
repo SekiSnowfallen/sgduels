@@ -66,7 +66,7 @@ public class InventoryLoader {
             case CREATIVE:
                 //Do nothing. Add Buildmode specific items here.
             default:
-                p.sendMessage("§cThis inventory has not been set up yet."+type);
+                //p.sendMessage("§cThis inventory has not been set up yet."+type);
         }
     }
 }
