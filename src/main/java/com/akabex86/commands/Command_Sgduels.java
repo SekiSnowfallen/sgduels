@@ -51,44 +51,37 @@ public class Command_Sgduels implements CommandExecutor {
             }
             return true;
         }
+        if (args[0].equalsIgnoreCase("setspawn")){
+            //TODO MAKE SETSPAWN COMMAND (BUILD CLASSES)
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("ask")){
+            Player target = Bukkit.getPlayer(args[1]);
+            if (target != null) {
+                if(p == target){
+                    p.sendMessage("§cBruh. Yo stoopid?");
+                    return true;
+                }
+                Request.ask(p,target);
+                p.sendMessage("§a");
+                target.sendMessage("§a");
+                return true;
+            }
+            p.sendMessage("§cPlayer not found.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("revoke")){
+            //revoke challenge
+
+            return true;
+        }
+
 
             /*
             if(args.length == 0){
                 //Utils.showHelp(p);
             }else if(args.length == 1){
-                if(args[0].equalsIgnoreCase("debug")){
-                    if(p.hasPermission("SGDuels.admin")){
-                        p.sendMessage("�aDebug infos:");
-                        if(Request.getAsked(p).size() != 0){
-                            p.sendMessage("�6Eigene Herausforderungen:");
-                            for(String s:Request.getAsked(p)){
-                                p.sendMessage("�8- �e"+s);
-                            }
-                        }
-                        p.sendMessage("�3Arenas:");
-                        for(String ID:Arena.ArenaList()){
-                            if(Arena.FreeArenas.contains(ID)){
-                                p.sendMessage("�8- �7"+ID+" �a(Frei)");
-                            }else{
-                                p.sendMessage("�8- �7"+ID+" �c(Ingame)");
-                            }
-                        }
-                        p.sendMessage("�2Spieler:");
-                        for(Player all:Bukkit.getOnlinePlayers()){
-                            if(Arena.inGameP.contains(all)){
-                                if(Arena.inGameDead.contains(all)){
-                                    p.sendMessage("�8- �7"+all.getName()+" �a(Ingame) �7�oGestorben�r");
-                                }else{
-                                    p.sendMessage("�8- �7"+all.getName()+" �a(Ingame)");
-                                }
-                            }else{
-                                p.sendMessage("�8- �7"+all.getName()+" �r(Lobby)");
-                            }
-                        }
-                    }else{
-                        Utils.showHelp(p);
-                    }
-                }else if(args[0].equalsIgnoreCase("setspawn")){
+                if(args[0].equalsIgnoreCase("setspawn")){
                     Spawn.setSpawn(p.getLocation());
                     p.sendMessage("�6Spawn Gesetzt!");
                 }else{
@@ -135,12 +128,12 @@ public class Command_Sgduels implements CommandExecutor {
         return true;
     }
     private void showHelp(Player p){
-        p.sendMessage("§e§lSGDUels §8§l- §6§lHELP");
-        p.sendMessage("§eHit Players with your §e§lDuel Blade§r§e in order to challenge");
-        p.sendMessage("§ethem to a Duel or to §aaccept§e challenges.");
-        p.sendMessage("§e §r");
-        p.sendMessage("§eRight click to cancel a pending challenge.");
-        p.sendMessage("§e §r");
+        p.sendMessage("§e§lSGDuels §8§l- §6§lHELP");
+        p.sendMessage("§6Hit Players with your §e§lDuel Blade§r§6 in order to challenge");
+        p.sendMessage("§6them to a Duel or to §aaccept§6 challenges.");
+        p.sendMessage("§6 §r");
+        p.sendMessage("§6Right click to §ccancel§6 a pending challenge.");
+        p.sendMessage("§6 §r");
         //TODO ADD CONTENT THROUGH PERMISIONS
         PlayerUtils.playSound(p,Sound.BLOCK_NOTE_BLOCK_PLING);
     }

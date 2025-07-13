@@ -12,7 +12,7 @@ public class _CommandLoader {
         Command_World wrld = new Command_World(main);
 
         main.getCommand("arena").setExecutor(are);
-        main.getCommand("sgd").setExecutor(sgd);
+        main.getCommand("sgduels").setExecutor(sgd);
         main.getCommand("spectate").setExecutor(spec);
         main.getCommand("world").setExecutor(wrld);
 

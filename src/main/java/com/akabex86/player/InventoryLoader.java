@@ -60,13 +60,16 @@ public class InventoryLoader {
 
                 inv.setItem(4,duelSword);
                 inv.setItem(8,leaveItem);
-
+                break;
             case CLEAR:
                 //Do nothing. The player doesn't need items.
+                break;
             case CREATIVE:
                 //Do nothing. Add Buildmode specific items here.
+                break;
             default:
                 //p.sendMessage("§cThis inventory has not been set up yet."+type);
+                break;
         }
     }
 }

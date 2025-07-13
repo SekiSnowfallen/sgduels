@@ -7,8 +7,8 @@ depend: [ProtocolLib]
 softdepend: [PlaceholderAPI,WorldGuard]
 
 commands:
-  sgd:
-    aliases: [duels,sgduels,sg]
+  sgduels:
+    aliases: [duels,sgd,sg]
     permission: SGDuels.duels
     usage: /sgd help
     description: Main Command.
