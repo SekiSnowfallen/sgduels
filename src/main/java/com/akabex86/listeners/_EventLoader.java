@@ -8,6 +8,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.*;
 
 public class _EventLoader implements Listener {
@@ -39,5 +40,8 @@ public class _EventLoader implements Listener {
     }
     @EventHandler public void onJoin(PlayerJoinEvent e){
         Event_Join.onJoin(e);
+    }
+    @EventHandler public void onFoodLevelChange(FoodLevelChangeEvent e){
+        Event_FoodLevelChange.onFoodLevelChange(e);
     }
 }
