@@ -1,7 +1,6 @@
 package com.akabex86.utils;
 
-import com.akabex86.main.Main;
-import org.bukkit.Effect;
+import com.destroystokyo.paper.ParticleBuilder;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
@@ -15,7 +14,14 @@ public class ParticleMagic {
         org.bukkit.Color col = org.bukkit.Color.fromRGB(c.getRed(),c.getGreen(),c.getBlue());
         Particle.DustOptions dust = new Particle.DustOptions(col,1.0F);
 
-        //p.spawnParticle(Particle.REDSTONE,loc,1,dust);
+        p.spawnParticle(Particle.DUST,loc,1,0,0,0,1.0,dust);
+        //loc.getWorld().spawnParticle(Particle.REDSTONE,loc,1,0,0,0,1.0,dust);
+        //ParticleBuilder colorparticle = new ParticleBuilder(Particle.REDSTONE);
+        //colorparticle.color(c.getRed(),c.getGreen(),c.getBlue());
+        //colorparticle.receivers(p);
+        //colorparticle.location(loc);
+        //colorparticle.spawn();
+
 
     }
     public static void spawnColoredParticle(Player p, Location loc) {
