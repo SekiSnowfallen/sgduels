@@ -41,6 +41,9 @@ public class _EventLoader implements Listener {
     @EventHandler public void onJoin(PlayerJoinEvent e){
         Event_Join.onJoin(e);
     }
+    @EventHandler public void onLeave(PlayerQuitEvent e){
+        Event_Leave.onLeave(e);
+    }
     @EventHandler public void onFoodLevelChange(FoodLevelChangeEvent e){
         Event_FoodLevelChange.onFoodLevelChange(e);
     }
