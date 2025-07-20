@@ -15,7 +15,7 @@ public class ParticleMagic {
         org.bukkit.Color col = org.bukkit.Color.fromRGB(c.getRed(),c.getGreen(),c.getBlue());
         Particle.DustOptions dust = new Particle.DustOptions(col,1.0F);
 
-        p.spawnParticle(Particle.REDSTONE,loc,1,dust);
+        //p.spawnParticle(Particle.REDSTONE,loc,1,dust);
 
     }
     public static void spawnColoredParticle(Player p, Location loc) {

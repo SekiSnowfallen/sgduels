@@ -3,13 +3,15 @@ package com.akabex86.listeners;
 import com.akabex86.arena.ArenaTracker;
 import com.akabex86.player.InventoryLoader;
 import com.akabex86.utils.PlayerUtils;
+import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class Event_Join {
     public static void onJoin(PlayerJoinEvent e){
         Player p = e.getPlayer();
-        e.setJoinMessage(null);
+        //e.setJoinMessage(null);
+        e.joinMessage(Component.empty());
         InventoryLoader.loadInventory(p, InventoryLoader.InventoryType.LOBBY);
         ArenaTracker.godMode.add(p);
         //TODO LOCK INVENTORY Inventory.lock(p)

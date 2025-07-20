@@ -1,8 +1,10 @@
 package com.akabex86.listeners;
 
+
 import org.bukkit.*;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -26,9 +28,10 @@ public class Event_BlockPlace {
                 p.getInventory().setItem(e.getHand(),itemInHand);
             }
             Location tntSpawnLocation =  e.getBlock().getLocation().add(0.5,0.2,0.5);
-            p.getWorld().spawnEntity(tntSpawnLocation, EntityType.PRIMED_TNT);
+            p.getWorld().spawn(tntSpawnLocation, TNTPrimed.class);
+
             double soundRadius = 15.0;
-            for (Player all:Bukkit.getOnlinePlayers()){
+            for (Player all: Bukkit.getOnlinePlayers()){
                 if(all.getLocation().distanceSquared(tntSpawnLocation) <= soundRadius*soundRadius){
                     all.playSound(tntSpawnLocation, Sound.ENTITY_TNT_PRIMED, 1, 1);
                     all.playSound(tntSpawnLocation, Sound.ENTITY_CREEPER_HURT, 1, 1);
