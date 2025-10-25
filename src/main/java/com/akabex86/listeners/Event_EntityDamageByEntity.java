@@ -1,6 +1,7 @@
 package com.akabex86.listeners;
 
 import com.akabex86.arena.ArenaTracker;
+import com.akabex86.utils.PlayerUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -12,7 +13,7 @@ public class Event_EntityDamageByEntity {
         if(!(e.getEntity() instanceof Player)) return;
         Player target = (Player) e.getEntity();
 
-        if(ArenaTracker.godMode.contains(target)){
+        if(PlayerUtils.isGod(target)){
             e.setCancelled(true);
         }
         if(!(e.getDamager() instanceof Player)) return;

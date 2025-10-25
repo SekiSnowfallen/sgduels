@@ -1,5 +1,6 @@
 package com.akabex86.player;
 
+import com.akabex86.utils.PlayerUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -60,12 +61,15 @@ public class InventoryLoader {
 
                 inv.setItem(4,duelSword);
                 inv.setItem(8,leaveItem);
+
+                PlayerUtils.lockInventory(p);
                 break;
             case CLEAR:
                 //Do nothing. The player doesn't need items.
                 break;
             case CREATIVE:
                 //Do nothing. Add Buildmode specific items here.
+                PlayerUtils.unlockInventory(p);
                 break;
             default:
                 //p.sendMessage("§cThis inventory has not been set up yet."+type);

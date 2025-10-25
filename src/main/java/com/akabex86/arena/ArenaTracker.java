@@ -18,7 +18,6 @@ public class ArenaTracker {
 
     //public static HashMap<String, List<Player>> spectators = new HashMap<>();
     public static ArrayList<Player> editors = new ArrayList<>();
-    public static ArrayList<Player> godMode = new ArrayList<>();
     private Player player1;
     private Player player2;
 

@@ -27,3 +27,8 @@ commands:
     permission: sgduels.world
     usage: /world <world>
     description: World Teleport.
+  debug:
+    aliases: [dbg,vars]
+    permission: sgduels.debug
+    usage: /debug <player>
+    description: Shows the status of dynamic variables - used for debugging.

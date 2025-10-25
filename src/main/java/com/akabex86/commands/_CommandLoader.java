@@ -10,11 +10,12 @@ public class _CommandLoader {
         Command_Sgduels sgd = new Command_Sgduels(main);
         Command_Spectate spec = new Command_Spectate(main);
         Command_World wrld = new Command_World(main);
+        Command_Debug dbg = new Command_Debug(main);
 
         main.getCommand("arena").setExecutor(are);
         main.getCommand("sgduels").setExecutor(sgd);
         main.getCommand("spectate").setExecutor(spec);
         main.getCommand("world").setExecutor(wrld);
-
+        main.getCommand("debug").setExecutor(dbg);
     }
 }
