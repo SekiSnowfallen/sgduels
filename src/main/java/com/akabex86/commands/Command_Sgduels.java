@@ -33,8 +33,10 @@ public class Command_Sgduels implements CommandExecutor {
             }
             p.sendMessage("§aShowing debug information...");
             //TODO SHOW MORE DEBUG INFO
+            //p.sendMessage("§6Currently challenging:");
+            //TODO ADD THE PLAYERS IM CHALLENGING HERE (Method needs general fixing)
             p.sendMessage("§6Currently challenged by:");
-            if(Request.getAsked(p).size() != 0){
+            if(!Request.getAsked(p).isEmpty()){
                 for(String s:Request.getAsked(p)){
                     p.sendMessage("§8- §e"+s);
                 }
@@ -63,8 +65,6 @@ public class Command_Sgduels implements CommandExecutor {
                     return true;
                 }
                 Request.ask(p,target);
-                p.sendMessage("§a");
-                target.sendMessage("§a");
                 return true;
             }
             p.sendMessage("§cPlayer not found.");

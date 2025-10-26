@@ -16,9 +16,13 @@ public class Command_Debug implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String arg2, String[] args) {
         if(!(sender instanceof Player)) {
+            PlayerUtils.logData();
             return true;
         }
         Player p = (Player)sender;
+
+        PlayerUtils.logData();
+
         if(args.length == 1){
             p.sendMessage("§c§lDEBUG - DYNAMIC VARIABLES FOR "+args[0].toUpperCase());
             p.sendMessage("§cisInventoryLocked §8= §7"+PlayerUtils.isInventoryLocked(args[0]));

@@ -60,4 +60,7 @@ public class _EventLoader implements Listener {
     @EventHandler public void onFoodLevelChange(FoodLevelChangeEvent e){
         Event_FoodLevelChange.onFoodLevelChange(e);
     }
+    @EventHandler public void onItemSwap(PlayerSwapHandItemsEvent e){
+        Event_SwapHand.onPlayerSwapItem(e);
+    }
 }

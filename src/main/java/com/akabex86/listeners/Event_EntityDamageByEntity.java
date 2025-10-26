@@ -28,6 +28,7 @@ public class Event_EntityDamageByEntity {
 
         String displayName = item.getItemMeta().getDisplayName();
         if(displayName == null || !displayName.equalsIgnoreCase("§eDuel Blade")) return;
-
+        // TEST THIS
+        attacker.sendMessage("[Debug] you used §eDuel Blade §r on "+target);
     }
 }

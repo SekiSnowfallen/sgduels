@@ -10,7 +10,7 @@ public class Request {
 
     public static void ask(Player attacker, Player target){
         ArrayList<String> players = getAsked(attacker);
-        players.add(target.getName());
+        if(!players.contains(target.getName()))players.add(target.getName());
         challenges.put(attacker.getName(),players);
     }
     public static void revoke (Player attacker, Player target){
