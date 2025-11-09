@@ -3,6 +3,7 @@ package com.akabex86.game;
 import com.akabex86.main.Main;
 import com.akabex86.arena.ArenaBuilder;
 import com.akabex86.arena.ArenaTracker;
+import com.akabex86.player.InventoryLoader;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -31,8 +32,8 @@ public class GameLoop {
         int initialIngameTime = ingameTime;
         int initialDmTime = dmTime;
 
+        Collections.addAll(participants,p1,p2);
        //TODO INITIAL TELEPORT, LOCK LOCATION AREA (with barriers), LOAD ARENA INV, IMPLEMENT NEW CHEST GENERATOR
-       Collections.addAll(participants,p1,p2);
        //ChestGenerator.loadChests(a)
 
        gameTimer = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.main, new Runnable() {//TODO replace with lambda(?)
@@ -54,10 +55,21 @@ public class GameLoop {
                 if(startTime >= 1){
                     if(startTime == initialStartTime){
                         //TODO load arena inv
+                        for(Player p:participants){
+                           InventoryLoader.loadInventory(p,InventoryLoader.InventoryType.CLEAR);
+                        }
+                    }
+
+                    p1.teleport(a.getPlayerSpawn(1));
+                    p2.teleport(a.getPlayerSpawn(2));
+                    for(Player p:participants){
+                        p.sendMessage("Game starting in "+ startTime);
                     }
                     startTime--;
+                }else{
+                    //TODO BUILD LOOP FOR INGAME AND DEATHMATCH
+                    endGame(p1,p2,a,EndReason.DRAW);
                 }
-               endGame(p1,p2,a,EndReason.DRAW);
 
            }
        },20,20);//Runs every 20 ticks == 1 second.
@@ -66,6 +78,8 @@ public class GameLoop {
        Bukkit.getScheduler().cancelTask(gameTimer);
        handleWinnerActions(winner);
        handleLooserActions(looser);
+       winner.sendMessage("game Ended.");
+       looser.sendMessage("game Ended.");
        //handleSpectatorActions(a.getSpectators???);
    }
    //

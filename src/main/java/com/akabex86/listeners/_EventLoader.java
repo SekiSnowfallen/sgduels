@@ -63,4 +63,7 @@ public class _EventLoader implements Listener {
     @EventHandler public void onItemSwap(PlayerSwapHandItemsEvent e){
         Event_SwapHand.onPlayerSwapItem(e);
     }
+    @EventHandler public void onInteract(PlayerInteractEntityEvent e){
+        Event_Interact.onPlayerInteractEntity(e);
+    }
 }

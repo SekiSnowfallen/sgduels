@@ -36,6 +36,10 @@ public class Command_Sgduels implements CommandExecutor {
             //p.sendMessage("§6Currently challenging:");
             //TODO ADD THE PLAYERS IM CHALLENGING HERE (Method needs general fixing)
             p.sendMessage("§6Currently challenged by:");
+            for(Player online:Bukkit.getOnlinePlayers()){
+                if(Request.getAsked(online).contains(p.getName()))p.sendMessage("§8- §e"+online.getName());
+            }
+            p.sendMessage("§6Currently challenging:");
             if(!Request.getAsked(p).isEmpty()){
                 for(String s:Request.getAsked(p)){
                     p.sendMessage("§8- §e"+s);
@@ -72,7 +76,16 @@ public class Command_Sgduels implements CommandExecutor {
         }
         if (args[0].equalsIgnoreCase("revoke")){
             //revoke challenge
-
+            Player target = Bukkit.getPlayer(args[1]);
+            if (target != null) {
+                if(p == target){
+                    p.sendMessage("§cBruh. Yo stoopid?");
+                    return true;
+                }
+                Request.revoke(p,target);
+                return true;
+            }
+            p.sendMessage("§cPlayer not found.");
             return true;
         }
 

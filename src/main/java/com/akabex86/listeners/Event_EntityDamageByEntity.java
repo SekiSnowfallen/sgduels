@@ -1,6 +1,7 @@
 package com.akabex86.listeners;
 
 import com.akabex86.arena.ArenaTracker;
+import com.akabex86.player.Request;
 import com.akabex86.utils.PlayerUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -29,6 +30,7 @@ public class Event_EntityDamageByEntity {
         String displayName = item.getItemMeta().getDisplayName();
         if(displayName == null || !displayName.equalsIgnoreCase("§eDuel Blade")) return;
         // TEST THIS
-        attacker.sendMessage("[Debug] you used §eDuel Blade §r on "+target);
+        //attacker.sendMessage("[Debug] you used §eDuel Blade §r on "+target);
+        Request.ask(attacker,target);
     }
 }
