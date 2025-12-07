@@ -67,8 +67,20 @@ public class GameLoop {
                     }
                     startTime--;
                 }else{
-                    //TODO BUILD LOOP FOR INGAME AND DEATHMATCH
-                    endGame(p1,p2,a,EndReason.DRAW);
+                    if(ingameTime >= 1){
+                        if(ingameTime == initialIngameTime){
+                            for(Player p:participants){
+                                InventoryLoader.loadInventory(p,InventoryLoader.InventoryType.CLEAR);
+                                p.sendMessage("GAME START");
+                            }
+                        }
+                        for(Player p:participants){
+                            p.sendMessage("Deathmatch starting in "+ ingameTime);
+                        }
+                    }else{
+                        //TODO BUILD LOOP FOR INGAME AND DEATHMATCH
+                        endGame(p1,p2,a,EndReason.DRAW);
+                    }
                 }
 
            }
