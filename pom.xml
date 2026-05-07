@@ -36,17 +36,8 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.3.1</version>
-                <configuration>
-                    <outputDirectory>D:\export\IFHTest\plugins</outputDirectory>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
-
     <dependencies>
         <!--This adds the Spigot API artifact to the build -->
         <dependency>
