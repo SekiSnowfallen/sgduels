@@ -5,7 +5,6 @@
 
 <h2 align="center"><b>SGDuels</b></h2>
 
-<hr>
 <h4 align="center">Survival Games - 1 vs 1</h4>
 <p align="center">
 <a href="https://github.com/SekiSnowfallen/sgduels/releases" alt="GitHub SGDuels releases"><img src="https://img.shields.io/badge/release-not_found-red" ></a>
