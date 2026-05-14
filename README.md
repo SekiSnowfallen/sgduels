@@ -18,5 +18,5 @@ If you survive long enough, it will be time for a deathmatch, where there will b
 
 Winner takes all!
 
-### Installation
-```An installation instruction will be provided with the first full release.```
+### Installation Instructions
+```A detailed installation instruction will be provided with the first full release.```
